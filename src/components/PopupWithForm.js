@@ -1,6 +1,10 @@
 function PopupWithForm(props) {
   return (
-    <section className={`popup popup_${props.name}`}>
+    <section
+      className={`popup popup_${props.name} ${
+        props.isOpen ? "popup_opened" : ""
+      }`}
+    >
       <div className="popup__container">
         <button className="popup__button-close hover" type="button"></button>
         <h2 className="popup__title">{props.title}</h2>

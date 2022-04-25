@@ -1,3 +1,4 @@
+import React from "react";
 import Header from "./Header";
 import Main from "./Main";
 import Footer from "./Footer";
@@ -5,18 +6,20 @@ import PopupWithForm from "./PopupWithForm";
 import ImagePopup from "./ImagePopup";
 
 function App() {
+  const [isEditProfilePopupOpen, setEditProfilePopupOpen] = React.useState();
+  const [isAddPlacePopupOpen, setAddPlacePopupOpen] = React.useState();
+  const [isEditAvatarPopupOpen, setEditAvatarPopupOpen] = React.useState();
+
   function handleEditAvatarClick() {
-    document
-      .querySelector(".popup_change-avatar")
-      .classList.add("popup_opened");
+    setEditAvatarPopupOpen(true);
   }
 
   function handleEditProfileClick() {
-    document.querySelector(".popup_profile").classList.add("popup_opened");
+    setEditProfilePopupOpen(true);
   }
 
   function handleAddPlaceClick() {
-    document.querySelector(".popup_card-photo").classList.add("popup_opened");
+    setAddPlacePopupOpen(true);
   }
 
   return (
@@ -34,6 +37,7 @@ function App() {
       <PopupWithForm
         title="Обновить аватар"
         name="change-avatar"
+        isOpen={isEditAvatarPopupOpen}
         children={
           <fieldset className="popup__input-container">
             <input
@@ -54,6 +58,7 @@ function App() {
       <PopupWithForm
         title="Редактировать профиль"
         name="profile"
+        isOpen={isEditProfilePopupOpen}
         children={
           <fieldset className="popup__input-container">
             <input
@@ -87,6 +92,7 @@ function App() {
       <PopupWithForm
         title="Новое место"
         name="card-photo"
+        isOpen={isAddPlacePopupOpen}
         children={
           <fieldset className="popup__input-container">
             <input
@@ -139,8 +145,6 @@ function App() {
           </div>
         </article>
       </template>
-
-
     </div>
   );
 }
