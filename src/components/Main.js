@@ -56,7 +56,7 @@ function Main(props) {
       </div>
       <ul className="photo-grid">
         {cards.map(element => (
-            <Card element={element} key={element._id}/>
+            <Card onCardClick={props.onCardClick} element={element} key={element._id}/>
             ))}
         </ul>
     </main>

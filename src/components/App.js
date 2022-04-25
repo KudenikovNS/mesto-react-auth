@@ -9,6 +9,7 @@ function App() {
   const [isEditProfilePopupOpen, setEditProfilePopupOpen] = React.useState();
   const [isAddPlacePopupOpen, setAddPlacePopupOpen] = React.useState();
   const [isEditAvatarPopupOpen, setEditAvatarPopupOpen] = React.useState();
+  const [selectedCard, setSelectedCard] = React.useState();
 
   function handleEditAvatarClick() {
     setEditAvatarPopupOpen(true);
@@ -26,7 +27,12 @@ function App() {
     setEditAvatarPopupOpen(false);
     setEditProfilePopupOpen(false);
     setAddPlacePopupOpen(false);
+    setSelectedCard();
   }
+
+  function handleCardClick(element) {
+    setSelectedCard(element);
+  } 
 
   return (
     <div className="App">
@@ -36,6 +42,7 @@ function App() {
           onEditProfile={handleEditProfileClick}
           onAddPlace={handleAddPlaceClick}
           onEditAvatar={handleEditAvatarClick}
+          onCardClick={handleCardClick}
         />
       </div>
       <Footer />
@@ -133,7 +140,7 @@ function App() {
 
       <PopupWithForm title="Вы уверены?" name="delete_card" />
 
-      <ImagePopup />
+      <ImagePopup element={selectedCard} onClose={closeAllPopups} />
     </div>
   );
 }

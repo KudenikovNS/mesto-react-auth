@@ -1,8 +1,17 @@
 function Card(props) {
+  function handleCardClick() {
+    props.onCardClick(props.element);
+  }
+
   return (
     <li className="element">
       <button className="element__button-delete hover" type="button"></button>
-      <img className="element__photo" src={props.element.link} alt="#" />
+      <img
+        className="element__photo"
+        src={props.element.link}
+        alt="#"
+        onClick={handleCardClick}
+      />
       <div className="element__info">
         <p className="element__subtitle">{props.element.name}</p>
         <div className="__container-like">
