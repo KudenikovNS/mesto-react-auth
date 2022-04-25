@@ -5,15 +5,32 @@ import Footer from "./Footer";
 /* import logo from './logo.svg'; */
 
 function App() {
+  function handleEditAvatarClick() {
+    document
+      .querySelector(".popup_change-avatar")
+      .classList.add("popup_opened");
+  }
+
+  function handleEditProfileClick() {
+    document.querySelector(".popup_profile").classList.add("popup_opened");
+  }
+
+  function handleAddPlaceClick() {
+    document.querySelector(".popup_card-photo").classList.add("popup_opened");
+  }
+
   return (
     <div className="App">
       <div className="page__container">
         <Header />
-        <Main />
+        <Main
+          onEditProfile={handleEditProfileClick}
+          onAddPlace={handleAddPlaceClick}
+          onEditAvatar={handleEditAvatarClick}
+        />
       </div>
       <Footer />
-      {/*  */}
-      {/* BLOCK TEMPLATE_Блок для новый картинок */}
+
       <template className="template" id="template">
         <article className="element">
           <button
@@ -23,7 +40,6 @@ function App() {
           <img className="element__photo" src="#" alt="#" />
           <div className="element__info">
             <p className="element__subtitle"></p>
-            {/* BLOCK LIKE_Блок лайков */}
             <div className="__container-like">
               <button
                 className="element__button-like hover"
@@ -31,12 +47,10 @@ function App() {
               ></button>
               <div className="element__counter-like"></div>
             </div>
-            {/*  */}
           </div>
         </article>
       </template>
-      {/*  */}
-      {/* POPUP PROFILE - Окно редактирования профиля */}
+
       <section className="popup popup_profile">
         <div className="popup__container">
           <button className="popup__button-close hover" type="button"></button>
@@ -56,8 +70,8 @@ function App() {
                 name="name"
                 value=""
                 required
-                minlength="2"
-                maxlength="40"
+                minLength="2"
+                maxLength="40"
               />
               <span className="popup__error-input name-input-error"></span>
               <input
@@ -68,8 +82,8 @@ function App() {
                 name="profession"
                 value="Исследователь океана"
                 required
-                minlength="2"
-                maxlength="200"
+                minLength="2"
+                maxLength="200"
               />
               <span className="popup__error-input subname-input-error"></span>
             </fieldset>
@@ -79,8 +93,7 @@ function App() {
           </form>
         </div>
       </section>
-      {/*  */}
-      {/* POPUP ADD CARD_ Окно для создания карточки с фотографией */}
+
       <section className="popup popup_card-photo">
         <div className="popup__container">
           <button className="popup__button-close hover" type="button"></button>
@@ -100,8 +113,8 @@ function App() {
                 name="place"
                 value=""
                 required
-                minlength="2"
-                maxlength="30"
+                minLength="2"
+                maxLength="30"
               />
               <span className="popup__error-input card-name-input-error popup__input-card-subname"></span>
               <input
@@ -125,8 +138,7 @@ function App() {
           </form>
         </div>
       </section>
-      {/*  */}
-      {/* POPUP FULL IMAGE_ Увеличение фотографий при нажатии */}
+
       <section className="popup popup_size-photo">
         <div className="popup__container-size">
           <button className="popup__button-close hover" type="button"></button>
@@ -134,8 +146,7 @@ function App() {
           <p className="popup__photo-name"></p>
         </div>
       </section>
-      {/*  */}
-      {/* POPUP DELETE CARD_ Окно для запроса удаления карточки */}
+
       <section className="popup popup_delete_card">
         <div className="popup__container popup__container-delete-card">
           <button className="popup__button-close hover" type="button"></button>
@@ -152,12 +163,10 @@ function App() {
           </form>
         </div>
       </section>
-      {/*  */}
-      {/* POPUP EDIT AVATAR_ Окно для изменения аватарки пользователя */}
+
       <section className="popup popup_change-avatar">
         <div className="popup__container popup__container-change-avatar">
           <button className="popup__button-close hover" type="button"></button>
-
           <h2 className="popup__title">Обновить аватар</h2>
           <form
             className="popup__form popup__form_avatar"
@@ -184,7 +193,6 @@ function App() {
           </form>
         </div>
       </section>
-      {/*  */}
     </div>
   );
 }

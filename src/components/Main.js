@@ -1,8 +1,8 @@
-function Main() {
+function Main(props) {
   return (
     <main className="content">
       <div className="profile">
-        <div className="profile__container-avatar">
+        <div onClick={props.onEditAvatar} className="profile__container-avatar">
           <img
             className="profile__avatar"
             src="<%=require('./images/avatar.jpg')%>"
@@ -16,16 +16,12 @@ function Main() {
             <p className="profile__subtitle">Исследователь океана</p>
           </div>
           <button
+            onClick={props.onEditProfile}
             className="profile__button-edit hover"
             type="button"
-            ariaLabel="Кнопка редоктирования информации о пользователе"
           ></button>
         </div>
-        <button
-          className="profile__button-add hover"
-          type="button"
-          ariaLabel="Кнопка для добавления контента"
-        ></button>
+        <button onClick={props.onAddPlace} className="profile__button-add hover" type="button"></button>
       </div>
       <section className="photo-grid"></section>
     </main>
