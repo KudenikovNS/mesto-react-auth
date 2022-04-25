@@ -134,26 +134,6 @@ function App() {
       <PopupWithForm title="Вы уверены?" name="delete_card" />
 
       <ImagePopup />
-
-      <template className="template" id="template">
-        <article className="element">
-          <button
-            className="element__button-delete hover"
-            type="button"
-          ></button>
-          <img className="element__photo" src="#" alt="#" />
-          <div className="element__info">
-            <p className="element__subtitle"></p>
-            <div className="__container-like">
-              <button
-                className="element__button-like hover"
-                type="button"
-              ></button>
-              <div className="element__counter-like"></div>
-            </div>
-          </div>
-        </article>
-      </template>
     </div>
   );
 }
