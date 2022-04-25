@@ -21,7 +21,11 @@ function Main(props) {
             type="button"
           ></button>
         </div>
-        <button onClick={props.onAddPlace} className="profile__button-add hover" type="button"></button>
+        <button
+          onClick={props.onAddPlace}
+          className="profile__button-add hover"
+          type="button"
+        ></button>
       </div>
       <section className="photo-grid"></section>
     </main>

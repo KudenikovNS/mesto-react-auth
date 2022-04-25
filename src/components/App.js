@@ -1,8 +1,7 @@
 import Header from "./Header";
 import Main from "./Main";
 import Footer from "./Footer";
-
-/* import logo from './logo.svg'; */
+import PopupWithForm from "./PopupWithForm";
 
 function App() {
   function handleEditAvatarClick() {
@@ -31,6 +30,93 @@ function App() {
       </div>
       <Footer />
 
+      <PopupWithForm
+        title="Обновить аватар"
+        name="change-avatar"
+        children={
+          <fieldset className="popup__input-container">
+            <input
+              className="popup__input"
+              id="input-link-photo"
+              type="url"
+              placeholder="Ссылка на аватарку"
+              name="avatar"
+              value=""
+              required
+              src=""
+            />
+            <span className="popup__error-input input-link-photo-error"></span>
+          </fieldset>
+        }
+      />
+
+      <PopupWithForm
+        title="Редактировать профиль"
+        name="profile"
+        children={
+          <fieldset className="popup__input-container">
+            <input
+              className="popup__input popup__input-profile-name"
+              id="name-input"
+              type="text"
+              placeholder="ФИО"
+              name="name"
+              value=""
+              required
+              minLength="2"
+              maxLength="40"
+            />
+            <span className="popup__error-input name-input-error"></span>
+            <input
+              className="popup__input popup__input-profile-subname"
+              id="subname-input"
+              type="text"
+              placeholder="Профессия"
+              name="profession"
+              value="Исследователь океана"
+              required
+              minLength="2"
+              maxLength="200"
+            />
+            <span className="popup__error-input subname-input-error"></span>
+          </fieldset>
+        }
+      />
+
+      <PopupWithForm
+        title="Новое место"
+        name="card-photo"
+        children={
+          <fieldset className="popup__input-container">
+            <input
+              className="popup__input popup__input-card-name"
+              id="card-name-input"
+              type="text"
+              placeholder="Название картинки"
+              name="place"
+              value=""
+              required
+              minLength="2"
+              maxLength="30"
+            />
+            <span className="popup__error-input card-name-input-error popup__input-card-subname"></span>
+            <input
+              className="popup__input"
+              id="card-subname-input"
+              type="url"
+              placeholder="Ссылка на картинку"
+              name="link"
+              value=""
+              required
+              src=""
+            />
+            <span className="popup__error-input card-subname-input-error"></span>
+          </fieldset>
+        }
+      />
+
+      <PopupWithForm title="Вы уверены?" name="delete_card" />
+
       <template className="template" id="template">
         <article className="element">
           <button
@@ -51,146 +137,11 @@ function App() {
         </article>
       </template>
 
-      <section className="popup popup_profile">
-        <div className="popup__container">
-          <button className="popup__button-close hover" type="button"></button>
-          <h2 className="popup__title">Редактировать профиль</h2>
-          <form
-            className="popup__form popup__form-profile"
-            action="#"
-            name="formProfile"
-            novalidate
-          >
-            <fieldset className="popup__input-container">
-              <input
-                className="popup__input popup__input-profile-name"
-                id="name-input"
-                type="text"
-                placeholder="ФИО"
-                name="name"
-                value=""
-                required
-                minLength="2"
-                maxLength="40"
-              />
-              <span className="popup__error-input name-input-error"></span>
-              <input
-                className="popup__input popup__input-profile-subname"
-                id="subname-input"
-                type="text"
-                placeholder="Профессия"
-                name="profession"
-                value="Исследователь океана"
-                required
-                minLength="2"
-                maxLength="200"
-              />
-              <span className="popup__error-input subname-input-error"></span>
-            </fieldset>
-            <button className="popup__button-save" type="submit">
-              Сохранить
-            </button>
-          </form>
-        </div>
-      </section>
-
-      <section className="popup popup_card-photo">
-        <div className="popup__container">
-          <button className="popup__button-close hover" type="button"></button>
-          <h2 className="popup__title">Новое место</h2>
-          <form
-            className="popup__form popup__form_card-photo"
-            action="#"
-            name="formCard"
-            novalidate
-          >
-            <fieldset className="popup__input-container">
-              <input
-                className="popup__input popup__input-card-name"
-                id="card-name-input"
-                type="text"
-                placeholder="Название картинки"
-                name="place"
-                value=""
-                required
-                minLength="2"
-                maxLength="30"
-              />
-              <span className="popup__error-input card-name-input-error popup__input-card-subname"></span>
-              <input
-                className="popup__input"
-                id="card-subname-input"
-                type="url"
-                placeholder="Ссылка на картинку"
-                name="link"
-                value=""
-                required
-                src=""
-              />
-              <span className="popup__error-input card-subname-input-error"></span>
-            </fieldset>
-            <button
-              className="popup__button-save popup__button-save_disabled"
-              type="submit"
-            >
-              Создать
-            </button>
-          </form>
-        </div>
-      </section>
-
       <section className="popup popup_size-photo">
         <div className="popup__container-size">
           <button className="popup__button-close hover" type="button"></button>
           <img className="popup__photo" src="#" alt="Картинка" />
           <p className="popup__photo-name"></p>
-        </div>
-      </section>
-
-      <section className="popup popup_delete_card">
-        <div className="popup__container popup__container-delete-card">
-          <button className="popup__button-close hover" type="button"></button>
-          <h2 className="popup__title">Вы уверены?</h2>
-          <form
-            className="popup__form"
-            action="#"
-            name="formСardВelete"
-            novalidate
-          >
-            <button className="popup__button-save" type="submit">
-              Да
-            </button>
-          </form>
-        </div>
-      </section>
-
-      <section className="popup popup_change-avatar">
-        <div className="popup__container popup__container-change-avatar">
-          <button className="popup__button-close hover" type="button"></button>
-          <h2 className="popup__title">Обновить аватар</h2>
-          <form
-            className="popup__form popup__form_avatar"
-            action="#"
-            name="formChangeAvatar"
-            novalidate
-          >
-            <fieldset className="popup__input-container">
-              <input
-                className="popup__input"
-                id="input-link-photo"
-                type="url"
-                placeholder="Ссылка на аватарку"
-                name="avatar"
-                value=""
-                required
-                src=""
-              />
-              <span className="popup__error-input input-link-photo-error"></span>
-            </fieldset>
-            <button className="popup__button-save" type="submit">
-              Сохранить
-            </button>
-          </form>
         </div>
       </section>
     </div>
