@@ -2,6 +2,7 @@ import Header from "./Header";
 import Main from "./Main";
 import Footer from "./Footer";
 import PopupWithForm from "./PopupWithForm";
+import ImagePopup from "./ImagePopup";
 
 function App() {
   function handleEditAvatarClick() {
@@ -117,6 +118,8 @@ function App() {
 
       <PopupWithForm title="Вы уверены?" name="delete_card" />
 
+      <ImagePopup />
+
       <template className="template" id="template">
         <article className="element">
           <button
@@ -137,13 +140,7 @@ function App() {
         </article>
       </template>
 
-      <section className="popup popup_size-photo">
-        <div className="popup__container-size">
-          <button className="popup__button-close hover" type="button"></button>
-          <img className="popup__photo" src="#" alt="Картинка" />
-          <p className="popup__photo-name"></p>
-        </div>
-      </section>
+
     </div>
   );
 }
