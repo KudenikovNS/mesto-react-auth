@@ -1,0 +1,7 @@
+.popup__container-size {
+  display: flex;
+  flex-direction: column;
+  color: white;
+  position: relative;
+  border-radius: 10px;
+}
