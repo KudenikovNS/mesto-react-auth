@@ -9,7 +9,7 @@ export function Card(props) {
       <img
         className="element__photo"
         src={props.element.link}
-        alt="#"
+        alt={props.element.name}
         onClick={handleCardClick}
       />
       <div className="element__info">

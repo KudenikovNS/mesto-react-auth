@@ -16,7 +16,6 @@ export function PopupWithForm(props) {
           className={`"popup__form popup__form-${props.name}`}
           action="#"
           name={props.name}
-          noValidate
         >
           {props.children}
           <button className="popup__button-save" type="submit">

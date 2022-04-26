@@ -1,25 +1,31 @@
 import React from "react";
 import { api } from "../utils/Api";
-import {Card} from "./Card";
+import { Card } from "./Card";
 
 export function Main(props) {
-  const [userName, setUserName] = React.useState();
-  const [userDescription, setUserDescription] = React.useState();
-  const [userAvatar, setUserAvatar] = React.useState();
+  const [userName, setUserName] = React.useState("");
+  const [userDescription, setUserDescription] = React.useState("");
+  const [userAvatar, setUserAvatar] = React.useState("");
   const [cards, setCards] = React.useState([]);
 
   React.useEffect(() => {
-    api.getProfile().then((data) => {
-      setUserName(data.name);
-      setUserDescription(data.about);
-      setUserAvatar(data.avatar);
-    });
-  }, []);
+    api
+      .getProfile()
+      .then((data) => {
+        setUserName(data.name);
+        setUserDescription(data.about);
+        setUserAvatar(data.avatar);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
 
-  React.useEffect(() => {
-    api.getInitialCards().then((data) => {
-      setCards(data);
-    });
+    api
+      .getInitialCards()
+      .then((cards) => setCards(cards))
+      .catch((err) => {
+        console.log(err);
+      });
   }, []);
 
   return (
@@ -30,11 +36,6 @@ export function Main(props) {
             className="profile__avatar"
             style={{ backgroundImage: `url(${userAvatar})` }}
           ></div>
-          {/*<img
-            className="profile__avatar"
-            src="<%=require('./images/avatar.jpg')%>"
-            alt="Аватарка"
-          /> */}
           <div className="profile__change-avatar"></div>
         </div>
         <div className="profile__list">
