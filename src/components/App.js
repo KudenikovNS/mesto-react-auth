@@ -1,11 +1,11 @@
 import React from "react";
-import Header from "./Header";
-import Main from "./Main";
-import Footer from "./Footer";
-import PopupWithForm from "./PopupWithForm";
-import ImagePopup from "./ImagePopup";
+import {Header} from "./Header";
+import {Main} from "./Main";
+import {Footer} from "./Footer";
+import {PopupWithForm} from "./PopupWithForm";
+import {ImagePopup} from "./ImagePopup";
 
-function App() {
+export function App() {
   const [isEditProfilePopupOpen, setEditProfilePopupOpen] = React.useState();
   const [isAddPlacePopupOpen, setAddPlacePopupOpen] = React.useState();
   const [isEditAvatarPopupOpen, setEditAvatarPopupOpen] = React.useState();
@@ -32,7 +32,7 @@ function App() {
 
   function handleCardClick(element) {
     setSelectedCard(element);
-  } 
+  }
 
   return (
     <div className="App">
@@ -60,7 +60,6 @@ function App() {
               type="url"
               placeholder="Ссылка на аватарку"
               name="avatar"
-              value=""
               required
               src=""
             />
@@ -82,7 +81,6 @@ function App() {
               type="text"
               placeholder="ФИО"
               name="name"
-              value=""
               required
               minLength="2"
               maxLength="40"
@@ -94,7 +92,6 @@ function App() {
               type="text"
               placeholder="Профессия"
               name="profession"
-              value="Исследователь океана"
               required
               minLength="2"
               maxLength="200"
@@ -117,7 +114,6 @@ function App() {
               type="text"
               placeholder="Название картинки"
               name="place"
-              value=""
               required
               minLength="2"
               maxLength="30"
@@ -129,7 +125,6 @@ function App() {
               type="url"
               placeholder="Ссылка на картинку"
               name="link"
-              value=""
               required
               src=""
             />
@@ -140,9 +135,9 @@ function App() {
 
       <PopupWithForm title="Вы уверены?" name="delete_card" />
 
-      <ImagePopup element={selectedCard} onClose={closeAllPopups} />
+      {selectedCard && (
+        <ImagePopup element={selectedCard} onClose={closeAllPopups} />
+      )}
     </div>
   );
 }
-
-export default App;

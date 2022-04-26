@@ -1,4 +1,4 @@
-function Card(props) {
+export function Card(props) {
   function handleCardClick() {
     props.onCardClick(props.element);
   }
@@ -24,5 +24,3 @@ function Card(props) {
     </li>
   );
 }
-
-export default Card;

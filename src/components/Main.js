@@ -1,8 +1,8 @@
 import React from "react";
 import { api } from "../utils/Api";
-import Card from "./Card";
+import {Card} from "./Card";
 
-function Main(props) {
+export function Main(props) {
   const [userName, setUserName] = React.useState();
   const [userDescription, setUserDescription] = React.useState();
   const [userAvatar, setUserAvatar] = React.useState();
@@ -55,12 +55,14 @@ function Main(props) {
         ></button>
       </div>
       <ul className="photo-grid">
-        {cards.map(element => (
-            <Card onCardClick={props.onCardClick} element={element} key={element._id}/>
-            ))}
-        </ul>
+        {cards.map((element) => (
+          <Card
+            onCardClick={props.onCardClick}
+            element={element}
+            key={element._id}
+          />
+        ))}
+      </ul>
     </main>
   );
 }
-
-export default Main;

@@ -1,4 +1,4 @@
-function ImagePopup(props) {
+export function ImagePopup(props) {
   return (
     <section
       className={`popup popup_size-photo ${
@@ -13,15 +13,11 @@ function ImagePopup(props) {
         ></button>
         <img
           className="popup__photo"
-          src={props.element ? props.element.link : "#"}
-          alt="Картинка"
+          src={props.element.link}
+          alt={props.element.name}
         />
-        <p className="popup__photo-name">
-          {props.element ? props.element.name : ""}
-        </p>
+        <p className="popup__photo-name">{props.element.name}</p>
       </div>
     </section>
   );
 }
-
-export default ImagePopup;
