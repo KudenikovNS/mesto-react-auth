@@ -12,7 +12,7 @@ export class Api {
     }
   }
 
-  getProfile() {
+  getUserInfo() {
     return fetch(`${this._baseUrl}/users/me`, {
       headers: this._headers,
     }).then((res) => this._requestResult(res));
@@ -62,8 +62,6 @@ export class Api {
       headers: this._headers,
     }).then((res) => this._requestResult(res));
   }
-
-
 
   addLikes(id) {
     return fetch(`${this._baseUrl}/cards/${id}/likes`, {

@@ -21,7 +21,8 @@ export function App() {
   const handleAddPlaceClick = () => setAddPlacePopupOpen(true);
 
   React.useEffect(() => {
-    api.getUserInfo
+    api
+      .getUserInfo()
       .then((res) => setCurrentUser(res))
       .catch((err) => console.log("Ошибка данных пользователя", err));
   }, []);
