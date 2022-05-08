@@ -4,6 +4,7 @@ import { Main } from "./Main";
 import { Footer } from "./Footer";
 import { PopupWithForm } from "./PopupWithForm";
 import { ImagePopup } from "./ImagePopup";
+import { api } from "../utils/Api";
 
 export function App() {
   const [isEditProfilePopupOpen, setEditProfilePopupOpen] =
@@ -11,11 +12,18 @@ export function App() {
   const [isAddPlacePopupOpen, setAddPlacePopupOpen] = React.useState(false);
   const [isEditAvatarPopupOpen, setEditAvatarPopupOpen] = React.useState(false);
   const [selectedCard, setSelectedCard] = React.useState(null);
+  const [currentUser, setCurrentUser] = React.useState({});
 
   const handleCardClick = (element) => setSelectedCard(element);
   const handleEditAvatarClick = () => setEditAvatarPopupOpen(true);
   const handleEditProfileClick = () => setEditProfilePopupOpen(true);
   const handleAddPlaceClick = () => setAddPlacePopupOpen(true);
+
+  React.useEffect(() => {
+    api.getUserInfo
+      .then((res) => setCurrentUser(res))
+      .catch((err) => console.log("Ошибка данных пользователя", err));
+  }, []);
 
   function closeAllPopups() {
     setEditAvatarPopupOpen(false);
