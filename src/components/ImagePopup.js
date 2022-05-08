@@ -1,22 +1,14 @@
-export function ImagePopup(props) {
+export function ImagePopup({ element, onClose }) {
   return (
-    <section
-      className={`popup popup_size-photo ${
-        props.element ? "popup_opened" : ""
-      }`}
-    >
+    <section className={`popup popup_size-photo ${element && "popup_opened"}`}>
       <div className="popup__container-size">
         <button
           className="popup__button-close hover"
           type="button"
-          onClick={props.onClose}
+          onClick={onClose}
         ></button>
-        <img
-          className="popup__photo"
-          src={props.element.link}
-          alt={props.element.name}
-        />
-        <p className="popup__photo-name">{props.element.name}</p>
+        <img className="popup__photo" src={element.link} alt={element.name} />
+        <p className="popup__photo-name">{element.name}</p>
       </div>
     </section>
   );

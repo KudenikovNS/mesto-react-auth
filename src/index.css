@@ -49,3 +49,4 @@
 @import url(./blocks/popup/__button-save/_disabled/popup__button-save_disabled.css);
 
 @import url(./blocks/element/__button-like/_activ/element__button-like_activ.css);
+@import url(./blocks/element/__button-delete/_hidden/element__button-delete_hidden.css);
