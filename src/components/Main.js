@@ -16,6 +16,15 @@ export function Main(props) {
       });
   }, []);
 
+  function handleCardLike(element) {
+    const isLiked = element.likes.some((i) => i._id === currentUser._id);
+    api.addLikes(element._id, isLiked).then((newCard) => {
+      setCards((state) =>
+        state.map((c) => (c._id === element._id ? newCard : c))
+      );
+    });
+  }
+
   return (
     <main className="content">
       <div className="profile">
@@ -46,6 +55,7 @@ export function Main(props) {
       <ul className="photo-grid">
         {cards.map((element) => (
           <Card
+            onCardLike={handleCardLike}
             onCardClick={props.onCardClick}
             element={element}
             key={element._id}

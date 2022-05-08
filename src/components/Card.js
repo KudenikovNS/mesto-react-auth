@@ -1,11 +1,15 @@
 import React from "react";
 import { CurrentUserContext } from "../contexts/CurrentUserContext";
 
-export function Card({ element, onCardClick }) {
+export function Card({ element, onCardClick, onCardLike }) {
   const currentUser = React.useContext(CurrentUserContext);
 
   function handleCardClick() {
     onCardClick(element);
+  }
+
+  function handleLikeClick() {
+    onCardLike(element);
   }
 
   const isOwn = element.owner._id === currentUser._id;
@@ -30,9 +34,10 @@ export function Card({ element, onCardClick }) {
         <div className="__container-like">
           <button
             className={`element__button-like${
-              isLiked ? " element__button - like_activ" : ""
+              isLiked ? " element__button-like_activ" : " "
             }`}
             type="button"
+            onClick={handleLikeClick}
           ></button>
           <div className="element__counter-like">{element.likes.length}</div>
         </div>

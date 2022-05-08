@@ -63,9 +63,9 @@ export class Api {
     }).then((res) => this._requestResult(res));
   }
 
-  addLikes(id) {
+  addLikes(id, set) {
     return fetch(`${this._baseUrl}/cards/${id}/likes`, {
-      method: "PUT",
+      method: set ? "DELETE" : "PUT",
       headers: this._headers,
     }).then((res) => this._requestResult(res));
   }
