@@ -15,7 +15,7 @@ export function Card({ element, onCardClick }) {
     <li className="element">
       <button
         className={`element__button-delete${
-          !isOwn ? "element__button-delete_hidden" : ""
+          !isOwn ? " element__button-delete_hidden" : ""
         }`}
         type="button"
       ></button>
@@ -30,7 +30,7 @@ export function Card({ element, onCardClick }) {
         <div className="__container-like">
           <button
             className={`element__button-like${
-              isLiked ? "element__button - like_activ" : ""
+              isLiked ? " element__button - like_activ" : ""
             }`}
             type="button"
           ></button>
