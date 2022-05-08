@@ -1,7 +1,7 @@
 import React from "react";
 import { CurrentUserContext } from "../contexts/CurrentUserContext";
 
-export function Card({ element, onCardClick, onCardLike }) {
+export function Card({ element, onCardClick, onCardLike, onCardDelete }) {
   const currentUser = React.useContext(CurrentUserContext);
 
   function handleCardClick() {
@@ -10,6 +10,10 @@ export function Card({ element, onCardClick, onCardLike }) {
 
   function handleLikeClick() {
     onCardLike(element);
+  }
+
+  function handleDeleteClick() {
+    onCardDelete(element);
   }
 
   const isOwn = element.owner._id === currentUser._id;
@@ -22,6 +26,7 @@ export function Card({ element, onCardClick, onCardLike }) {
           !isOwn ? " element__button-delete_hidden" : ""
         }`}
         type="button"
+        onClick={handleDeleteClick}
       ></button>
       <img
         className="element__photo"

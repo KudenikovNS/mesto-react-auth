@@ -16,6 +16,15 @@ export function Main(props) {
       });
   }, []);
 
+  function handleDeleteClick(element) {
+    const isOwn = element.owner._id === currentUser._id;
+    isOwn &&
+      api
+        .deleteConfirmCard(element._id)
+        .then((res) => setCards(cards.filter((c) => c._id !== element._id)))
+        .catch((err) => console.log("Ошибка удаления карточки", err));
+  }
+
   function handleCardLike(element) {
     const isLiked = element.likes.some((i) => i._id === currentUser._id);
     api.addLikes(element._id, isLiked).then((newCard) => {
@@ -55,6 +64,7 @@ export function Main(props) {
       <ul className="photo-grid">
         {cards.map((element) => (
           <Card
+            onCardDelete={handleDeleteClick}
             onCardLike={handleCardLike}
             onCardClick={props.onCardClick}
             element={element}
