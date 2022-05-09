@@ -16,6 +16,7 @@ export function PopupWithForm(props) {
           className={`"popup__form popup__form-${props.name}`}
           action="#"
           name={props.name}
+          onSubmit={props.onSubmit}
         >
           {props.children}
           <button className="popup__button-save" type="submit">

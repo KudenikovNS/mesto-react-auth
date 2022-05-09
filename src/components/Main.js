@@ -47,7 +47,7 @@ export function Main(props) {
         <div className="profile__list">
           <div className="profile__info">
             <h1 className="profile__title">{currentUser.name}</h1>
-            <p className="profile__subtitle">{currentUser.profession}</p>
+            <p className="profile__subtitle">{currentUser.about}</p>
           </div>
           <button
             onClick={props.onEditProfile}

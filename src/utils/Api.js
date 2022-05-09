@@ -34,13 +34,13 @@ export class Api {
     }).then((res) => this._requestResult(res));
   }
 
-  editProfile(name, about) {
+  editProfile(user) {
     return fetch(`${this._baseUrl}/users/me`, {
       method: "PATCH",
       headers: this._headers,
       body: JSON.stringify({
-        name,
-        about,
+        name: user.name,
+        about: user.about,
       }),
     }).then((res) => this._requestResult(res));
   }

@@ -1,20 +1,29 @@
-import React, { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { CurrentUserContext } from "../contexts/CurrentUserContext";
 import { PopupWithForm } from "./PopupWithForm";
 
-export function EditProfilePopup({ isOpen, onClose }) {
+export function EditProfilePopup({ isOpen, onClose, onUpdateUser }) {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
 
-  const handelNameChange = (evt) => setName(evt.target.value);
-  const handelDescriptionChange = (evt) => setDescription(evt.target.value);
+  const handelNameChange = (event) => setName(event.target.value);
+  const handelDescriptionChange = (event) => setDescription(event.target.value);
 
   const currentUser = useContext(CurrentUserContext);
 
-  React.useEffect(() => {
-    setName(currentUser.name);
-    setDescription(currentUser.profession);
-  });
+  useEffect(() => {
+    setName(currentUser.name || "");
+    setDescription(currentUser.about || "");
+  }, [currentUser]);
+
+  function handleSubmit(e) {
+    e.preventDefault();
+
+    onUpdateUser({
+      name,
+      about: description,
+    });
+  }
 
   return (
     <PopupWithForm
@@ -22,6 +31,7 @@ export function EditProfilePopup({ isOpen, onClose }) {
       name="profile"
       isOpen={isOpen}
       onClose={onClose}
+      onSubmit={handleSubmit}
     >
       <fieldset className="popup__input-container">
         <input
@@ -42,7 +52,7 @@ export function EditProfilePopup({ isOpen, onClose }) {
           id="subname-input"
           type="text"
           placeholder="Профессия"
-          name="profession"
+          name="about"
           required
           minLength="2"
           maxLength="200"

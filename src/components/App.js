@@ -24,8 +24,12 @@ export function App() {
   React.useEffect(() => {
     api
       .getUserInfo()
-      .then((res) => setCurrentUser(res))
-      .catch((err) => console.log("Ошибка данных пользователя", err));
+      .then((res) => {
+        setCurrentUser(res);
+      })
+      .catch((err) =>
+        console.log("Ошибка при получении данных пользователя", err)
+      );
   }, []);
 
   function closeAllPopups() {
@@ -33,6 +37,18 @@ export function App() {
     setEditProfilePopupOpen(false);
     setAddPlacePopupOpen(false);
     setSelectedCard(null);
+  }
+
+  function handleUpdateUser(user) {
+    api
+      .editProfile(user)
+      .then((res) => {
+        setCurrentUser(res);
+        closeAllPopups();
+      })
+      .catch((err) =>
+        console.log("Ошибка при обновлении данных пользователя", err)
+      );
   }
 
   return (
@@ -72,6 +88,7 @@ export function App() {
         <EditProfilePopup
           isOpen={isEditProfilePopupOpen}
           onClose={closeAllPopups}
+          onUpdateUser={handleUpdateUser}
         />
 
         <PopupWithForm
