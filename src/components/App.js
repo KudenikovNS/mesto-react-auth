@@ -52,6 +52,16 @@ export function App() {
       );
   }
 
+  function handleUpdateAvatar({ avatar }) {
+    api
+      .updateAvatar(avatar)
+      .then((res) => {
+        setCurrentUser(res);
+        closeAllPopups();
+      })
+      .catch((err) => console.log("Ошибка при обновлении аватара", err));
+  }
+
   return (
     <CurrentUserContext.Provider value={currentUser}>
       <div className="App">
@@ -69,6 +79,7 @@ export function App() {
         <EditAvatarPopup
           isOpen={isEditAvatarPopupOpen}
           onClose={closeAllPopups}
+          onUpdateAvatar={handleUpdateAvatar}
         />
 
         <EditProfilePopup
