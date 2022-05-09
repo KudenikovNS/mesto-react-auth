@@ -1,6 +1,13 @@
+import { useEffect, useState } from "react";
 import { PopupWithForm } from "./PopupWithForm";
 
 export function EditProfilePopup({ isOpen, onClose }) {
+  const [name, setName] = useState("");
+  const [description, setDescription] = useState("");
+
+  const handelNameChange = (evt) => setName(evt.target.value);
+  const handelDescriptionChange = (evt) => setDescription(evt.target.value);
+
   return (
     <PopupWithForm
       title="Редактировать профиль"
@@ -18,6 +25,8 @@ export function EditProfilePopup({ isOpen, onClose }) {
           required
           minLength="2"
           maxLength="40"
+          value={name}
+          onChange={handelNameChange}
         />
         <span className="popup__error-input name-input-error"></span>
         <input
@@ -29,6 +38,8 @@ export function EditProfilePopup({ isOpen, onClose }) {
           required
           minLength="2"
           maxLength="200"
+          value={description}
+          onChange={handelDescriptionChange}
         />
         <span className="popup__error-input subname-input-error"></span>
       </fieldset>
