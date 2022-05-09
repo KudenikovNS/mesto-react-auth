@@ -6,6 +6,7 @@ import { PopupWithForm } from "./PopupWithForm";
 import { ImagePopup } from "./ImagePopup";
 import { api } from "../utils/Api";
 import { CurrentUserContext } from "../contexts/CurrentUserContext";
+import { EditProfilePopup } from "./EditProfilePopup";
 
 export function App() {
   const [isEditProfilePopupOpen, setEditProfilePopupOpen] =
@@ -68,37 +69,10 @@ export function App() {
           </fieldset>
         </PopupWithForm>
 
-        <PopupWithForm
-          title="Редактировать профиль"
-          name="profile"
+        <EditProfilePopup
           isOpen={isEditProfilePopupOpen}
           onClose={closeAllPopups}
-        >
-          <fieldset className="popup__input-container">
-            <input
-              className="popup__input popup__input-profile-name"
-              id="name-input"
-              type="text"
-              placeholder="ФИО"
-              name="name"
-              required
-              minLength="2"
-              maxLength="40"
-            />
-            <span className="popup__error-input name-input-error"></span>
-            <input
-              className="popup__input popup__input-profile-subname"
-              id="subname-input"
-              type="text"
-              placeholder="Профессия"
-              name="profession"
-              required
-              minLength="2"
-              maxLength="200"
-            />
-            <span className="popup__error-input subname-input-error"></span>
-          </fieldset>
-        </PopupWithForm>
+        />
 
         <PopupWithForm
           title="Новое место"
