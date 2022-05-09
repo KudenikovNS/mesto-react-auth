@@ -45,13 +45,13 @@ export class Api {
     }).then((res) => this._requestResult(res));
   }
 
-  addCard(name, link) {
+  addCard(newCard) {
     return fetch(`${this._baseUrl}/cards`, {
       method: "POST",
       headers: this._headers,
       body: JSON.stringify({
-        name,
-        link,
+        name: newCard.place,
+        link: newCard.link,
       }),
     }).then((res) => this._requestResult(res));
   }

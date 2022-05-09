@@ -8,6 +8,7 @@ import { api } from "../utils/Api";
 import { CurrentUserContext } from "../contexts/CurrentUserContext";
 import { EditProfilePopup } from "./EditProfilePopup";
 import { EditAvatarPopup } from "./EditAvatarPopup";
+import { AddPlacePopup } from "./AddPlacePopup";
 
 export function App() {
   const [isEditProfilePopupOpen, setEditProfilePopupOpen] =
@@ -90,6 +91,16 @@ export function App() {
     });
   }
 
+  function handleAddPlaceSubmit(element) {
+    api
+      .addCard(element)
+      .then((newCard) => {
+        setCards([newCard, ...cards]);
+        closeAllPopups();
+      })
+      .catch((err) => console.log("Ошибка при добавлении карточек", err));
+  }
+
   return (
     <CurrentUserContext.Provider value={currentUser}>
       <div className="App">
@@ -102,9 +113,16 @@ export function App() {
             onCardClick={handleCardClick}
             onCardLike={handleCardLike}
             onDeleteClick={handleDeleteClick}
+            cards={cards}
           />
         </div>
         <Footer />
+
+        <AddPlacePopup
+          isOpen={isAddPlacePopupOpen}
+          onClose={closeAllPopups}
+          onAddPlace={handleAddPlaceSubmit}
+        />
 
         <EditAvatarPopup
           isOpen={isEditAvatarPopupOpen}
@@ -117,37 +135,6 @@ export function App() {
           onClose={closeAllPopups}
           onUpdateUser={handleUpdateUser}
         />
-
-        <PopupWithForm
-          title="Новое место"
-          name="card-photo"
-          isOpen={isAddPlacePopupOpen}
-          onClose={closeAllPopups}
-        >
-          <fieldset className="popup__input-container">
-            <input
-              className="popup__input popup__input-card-name"
-              id="card-name-input"
-              type="text"
-              placeholder="Название картинки"
-              name="place"
-              required
-              minLength="2"
-              maxLength="30"
-            />
-            <span className="popup__error-input card-name-input-error popup__input-card-subname"></span>
-            <input
-              className="popup__input"
-              id="card-subname-input"
-              type="url"
-              placeholder="Ссылка на картинку"
-              name="link"
-              required
-              src=""
-            />
-            <span className="popup__error-input card-subname-input-error"></span>
-          </fieldset>
-        </PopupWithForm>
 
         <PopupWithForm title="Вы уверены?" name="delete_card" />
 
