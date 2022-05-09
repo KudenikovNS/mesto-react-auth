@@ -16,6 +16,7 @@ export function App() {
   const [isEditAvatarPopupOpen, setEditAvatarPopupOpen] = React.useState(false);
   const [selectedCard, setSelectedCard] = React.useState(null);
   const [currentUser, setCurrentUser] = React.useState({});
+  const [cards, setCards] = React.useState([]);
 
   const handleCardClick = (element) => setSelectedCard(element);
   const handleEditAvatarClick = () => setEditAvatarPopupOpen(true);
@@ -62,6 +63,33 @@ export function App() {
       .catch((err) => console.log("Ошибка при обновлении аватара", err));
   }
 
+  React.useEffect(() => {
+    api
+      .getInitialCards()
+      .then((cards) => setCards(cards))
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
+
+  function handleDeleteClick(element) {
+    const isOwn = element.owner._id === currentUser._id;
+    isOwn &&
+      api
+        .deleteConfirmCard(element._id)
+        .then((res) => setCards(cards.filter((c) => c._id !== element._id)))
+        .catch((err) => console.log("Ошибка удаления карточки", err));
+  }
+
+  function handleCardLike(element) {
+    const isLiked = element.likes.some((i) => i._id === currentUser._id);
+    api.addLikes(element._id, isLiked).then((newCard) => {
+      setCards((state) =>
+        state.map((c) => (c._id === element._id ? newCard : c))
+      );
+    });
+  }
+
   return (
     <CurrentUserContext.Provider value={currentUser}>
       <div className="App">
@@ -72,6 +100,8 @@ export function App() {
             onAddPlace={handleAddPlaceClick}
             onEditAvatar={handleEditAvatarClick}
             onCardClick={handleCardClick}
+            onCardLike={handleCardLike}
+            onDeleteClick={handleDeleteClick}
           />
         </div>
         <Footer />

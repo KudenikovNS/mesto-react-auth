@@ -1,38 +1,9 @@
 import React from "react";
 import { CurrentUserContext } from "../contexts/CurrentUserContext";
-import { api } from "../utils/Api";
 import { Card } from "./Card";
 
 export function Main(props) {
-  const [cards, setCards] = React.useState([]);
   const currentUser = React.useContext(CurrentUserContext);
-
-  React.useEffect(() => {
-    api
-      .getInitialCards()
-      .then((cards) => setCards(cards))
-      .catch((err) => {
-        console.log(err);
-      });
-  }, []);
-
-  function handleDeleteClick(element) {
-    const isOwn = element.owner._id === currentUser._id;
-    isOwn &&
-      api
-        .deleteConfirmCard(element._id)
-        .then((res) => setCards(cards.filter((c) => c._id !== element._id)))
-        .catch((err) => console.log("Ошибка удаления карточки", err));
-  }
-
-  function handleCardLike(element) {
-    const isLiked = element.likes.some((i) => i._id === currentUser._id);
-    api.addLikes(element._id, isLiked).then((newCard) => {
-      setCards((state) =>
-        state.map((c) => (c._id === element._id ? newCard : c))
-      );
-    });
-  }
 
   return (
     <main className="content">
