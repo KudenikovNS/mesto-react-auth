@@ -7,6 +7,7 @@ import { ImagePopup } from "./ImagePopup";
 import { api } from "../utils/Api";
 import { CurrentUserContext } from "../contexts/CurrentUserContext";
 import { EditProfilePopup } from "./EditProfilePopup";
+import { EditAvatarPopup } from "./EditAvatarPopup";
 
 export function App() {
   const [isEditProfilePopupOpen, setEditProfilePopupOpen] =
@@ -65,25 +66,10 @@ export function App() {
         </div>
         <Footer />
 
-        <PopupWithForm
-          title="Обновить аватар"
-          name="change-avatar"
+        <EditAvatarPopup
           isOpen={isEditAvatarPopupOpen}
           onClose={closeAllPopups}
-        >
-          <fieldset className="popup__input-container">
-            <input
-              className="popup__input"
-              id="input-link-photo"
-              type="url"
-              placeholder="Ссылка на аватарку"
-              name="avatar"
-              required
-              src=""
-            />
-            <span className="popup__error-input input-link-photo-error"></span>
-          </fieldset>
-        </PopupWithForm>
+        />
 
         <EditProfilePopup
           isOpen={isEditProfilePopupOpen}
