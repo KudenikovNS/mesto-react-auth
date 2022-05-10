@@ -7,12 +7,8 @@ export function ImagePopup({ card, onClose }) {
           type="button"
           onClick={onClose}
         ></button>
-        <img
-          className="popup__photo"
-          src={card ? card.link : "#"}
-          alt={card ? card.name : "#"}
-        />
-        <p className="popup__photo-name">{card && card.name}</p>
+        <img className="popup__photo" src={card?.link} alt={card?.name} />
+        <p className="popup__photo-name">{card?.name}</p>
       </div>
     </section>
   );
