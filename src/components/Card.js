@@ -1,23 +1,23 @@
 import React from "react";
 import { CurrentUserContext } from "../contexts/CurrentUserContext";
 
-export function Card({ element, onCardClick, onCardLike, onCardDelete }) {
+export function Card({ card, onCardClick, onCardLike, onCardDelete }) {
   const currentUser = React.useContext(CurrentUserContext);
 
   function handleCardClick() {
-    onCardClick(element);
+    onCardClick(card);
   }
 
   function handleLikeClick() {
-    onCardLike(element);
+    onCardLike(card);
   }
 
   function handleDeleteClick() {
-    onCardDelete(element);
+    onCardDelete(card);
   }
 
-  const isOwn = element.owner._id === currentUser._id;
-  const isLiked = element.likes.some((i) => i._id === currentUser._id);
+  const isOwn = currentUser._id === card.owner._id;
+  const isLiked = card.likes.some((i) => i._id === currentUser._id);
 
   return (
     <li className="element">
@@ -30,12 +30,12 @@ export function Card({ element, onCardClick, onCardLike, onCardDelete }) {
       ></button>
       <img
         className="element__photo"
-        src={element.link}
-        alt={element.name}
+        src={card.link}
+        alt={card.name}
         onClick={handleCardClick}
       />
       <div className="element__info">
-        <p className="element__subtitle">{element.name}</p>
+        <p className="element__subtitle">{card.name}</p>
         <div className="__container-like">
           <button
             className={`element__button-like${
@@ -44,7 +44,7 @@ export function Card({ element, onCardClick, onCardLike, onCardDelete }) {
             type="button"
             onClick={handleLikeClick}
           ></button>
-          <div className="element__counter-like">{element.likes.length}</div>
+          <div className="element__counter-like">{card.likes.length}</div>
         </div>
       </div>
     </li>

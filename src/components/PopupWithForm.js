@@ -1,4 +1,4 @@
-export function PopupWithForm(props) {
+export default function PopupWithForm({ buttonText = "Сохранить", ...props }) {
   return (
     <section
       className={`popup popup_${props.name} ${
@@ -20,7 +20,7 @@ export function PopupWithForm(props) {
         >
           {props.children}
           <button className="popup__button-save" type="submit">
-            Сохранить
+            {buttonText}
           </button>
         </form>
       </div>

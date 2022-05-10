@@ -33,13 +33,13 @@ export function Main(props) {
         ></button>
       </div>
       <ul className="photo-grid">
-        {props.cards.map((element) => (
+        {props.cards.map((card) => (
           <Card
             onCardDelete={props.onCardDelete}
             onCardLike={props.onCardLike}
             onCardClick={props.onCardClick}
-            element={element}
-            key={element._id}
+            card={card}
+            key={card._id}
           />
         ))}
       </ul>

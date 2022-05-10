@@ -1,14 +1,18 @@
-export function ImagePopup({ element, onClose }) {
+export function ImagePopup({ card, onClose }) {
   return (
-    <section className={`popup popup_size-photo ${element && "popup_opened"}`}>
+    <section className={`popup popup_size-photo ${card && "popup_opened"}`}>
       <div className="popup__container-size">
         <button
           className="popup__button-close hover"
           type="button"
           onClick={onClose}
         ></button>
-        <img className="popup__photo" src={element.link} alt={element.name} />
-        <p className="popup__photo-name">{element.name}</p>
+        <img
+          className="popup__photo"
+          src={card ? card.link : "#"}
+          alt={card ? card.name : "#"}
+        />
+        <p className="popup__photo-name">{card && card.name}</p>
       </div>
     </section>
   );

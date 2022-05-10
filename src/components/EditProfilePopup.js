@@ -1,13 +1,18 @@
 import { useContext, useEffect, useState } from "react";
 import { CurrentUserContext } from "../contexts/CurrentUserContext";
-import { PopupWithForm } from "./PopupWithForm";
+import PopupWithForm from "./PopupWithForm";
 
-export function EditProfilePopup({ isOpen, onClose, onUpdateUser }) {
+export function EditProfilePopup({
+  isOpen,
+  onClose,
+  onUpdateUser,
+  buttonText,
+}) {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
 
-  const handelNameChange = (event) => setName(event.target.value);
-  const handelDescriptionChange = (event) => setDescription(event.target.value);
+  const handelNameChange = (evt) => setName(evt.target.value);
+  const handelDescriptionChange = (evt) => setDescription(evt.target.value);
 
   const currentUser = useContext(CurrentUserContext);
 
@@ -32,6 +37,7 @@ export function EditProfilePopup({ isOpen, onClose, onUpdateUser }) {
       isOpen={isOpen}
       onClose={onClose}
       onSubmit={handleSubmit}
+      buttonText={buttonText}
     >
       <fieldset className="popup__input-container">
         <input

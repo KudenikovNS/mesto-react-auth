@@ -1,12 +1,17 @@
 import { useEffect, useState } from "react";
-import { PopupWithForm } from "./PopupWithForm";
+import PopupWithForm from "./PopupWithForm";
 
-export function AddPlacePopup({ isOpen, onClose, onAddPlace }) {
+export function AddPlacePopup({
+  isOpen,
+  onClose,
+  onAddPlace,
+  buttonText = "Создать",
+}) {
   const [place, setPlace] = useState("");
   const [link, setLink] = useState("");
 
-  const handelPlaceChange = (event) => setPlace(event.target.value);
-  const handelLinkChange = (event) => setLink(event.target.value);
+  const handelPlaceChange = (e) => setPlace(e.target.value);
+  const handelLinkChange = (e) => setLink(e.target.value);
 
   useEffect(() => {
     setPlace("");
@@ -25,6 +30,7 @@ export function AddPlacePopup({ isOpen, onClose, onAddPlace }) {
       isOpen={isOpen}
       onClose={onClose}
       onSubmit={handleSubmit}
+      buttonText={buttonText}
     >
       <fieldset className="popup__input-container">
         <input

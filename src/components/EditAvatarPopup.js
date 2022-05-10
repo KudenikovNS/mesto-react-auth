@@ -1,12 +1,16 @@
 import { useEffect, useRef } from "react";
-import { PopupWithForm } from "./PopupWithForm";
+import PopupWithForm from "./PopupWithForm";
 
-export function EditAvatarPopup({ isOpen, onClose, onUpdateAvatar }) {
+export function EditAvatarPopup({
+  isOpen,
+  onClose,
+  onUpdateAvatar,
+  buttonText,
+}) {
   const avatarRef = useRef();
 
-  function handleSubmit(e) {
-    e.preventDefault();
-
+  function handleSubmit(evt) {
+    evt.preventDefault();
     onUpdateAvatar({
       avatar: avatarRef.current.value,
     });
@@ -22,6 +26,7 @@ export function EditAvatarPopup({ isOpen, onClose, onUpdateAvatar }) {
       isOpen={isOpen}
       onClose={onClose}
       onSubmit={handleSubmit}
+      buttonText={buttonText}
     >
       <fieldset className="popup__input-container">
         <input
