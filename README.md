@@ -1,7 +1,7 @@
 ## Mesto.React
 
 Сервис предоставляет возможность делиться красивыми фотографиями мест в которых побывал фотограф.
-Реализация проекта [Mesto](https://kudenikovns.github.io/mesto-react/) на React.js
+Реализация проекта [Mesto](https://kudenikovns.github.io/Mesto-test-project/) на React.js
 
 ### Технологии
 
