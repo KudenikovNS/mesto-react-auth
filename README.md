@@ -7,4 +7,4 @@
 
 Использовался React.js: Create React App, портирование разметки в JSX, функциональные компоненты + хуки
 
-Просмотр сайта: https://kudenikovns.github.io/Mesto-react-test-project/
+Просмотр сайта: https://kudenikovns.github.io/mesto-react-auth/
